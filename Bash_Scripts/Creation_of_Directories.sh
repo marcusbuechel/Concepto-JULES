@@ -71,10 +71,10 @@ echo -e "The First Concepto-JULES bash script has begun running... \nfingers cro
 echo  "Script started at: " $time1 >> ${base_save}Concepto-JULES/Logs/Log_One.txt
 
 #Download the base namelists
-wget -r -np -nd -P ${base_save}Concepto-JULES/Input/JULES/Namelist/ https://www.dropbox.com/sh/qws4sh5vdflbz7d/AACmMEpS4myfORR6iXpEZWW0a?dl=1 -O temp.zip >> ${base_save}Concepto-JULES/Logs/Log_One.txt
+cd /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/
+wget -r -np -nd https://www.dropbox.com/sh/qws4sh5vdflbz7d/AACmMEpS4myfORR6iXpEZWW0a?dl=1 -O /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_One.txt
 unzip ${base_save}Concepto-JULES/Input/JULES/Namelist/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_One.txt
-rm ${base_save}Concepto-JULES/Input/JULES/Namelist/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_One.txt
-rm AACmMEpS4myfORR6iXpEZWW0a?dl=1 >> ${base_save}Concepto-JULES/Logs/Log_One.txt
+rm -r ${base_save}Concepto-JULES/Input/JULES/Namelist/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_One.txt
 
 #Show final time
 time2=$(date)
