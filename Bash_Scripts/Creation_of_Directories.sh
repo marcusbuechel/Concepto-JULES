@@ -78,10 +78,17 @@ rm -r ${base_save}Concepto-JULES/Input/JULES/Namelist/temp.zip >> ${base_save}Co
 
 #Show the file structure
 cd /work/scratch-pw/$USER/Concepto-JULES
-echo " File Structure created
+echo "
+################################################################################
+
+File Structure created;
 
 "
 tree -d
+echo "
+
+################################################################################
+"
 
 #Show final time
 time2=$(date)
