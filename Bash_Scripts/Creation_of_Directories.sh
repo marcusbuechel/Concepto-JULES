@@ -76,6 +76,13 @@ wget -r -np -nd https://www.dropbox.com/sh/qws4sh5vdflbz7d/AACmMEpS4myfORR6iXpEZ
 unzip ${base_save}Concepto-JULES/Input/JULES/Namelist/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_One.txt
 rm -r ${base_save}Concepto-JULES/Input/JULES/Namelist/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_One.txt
 
+#Show the file structure
+cd /work/scratch-pw/$USER/Concepto-JULES
+echo " File Structure created
+
+"
+tree -d
+
 #Show final time
 time2=$(date)
 
