@@ -27,7 +27,27 @@
 # NOTE: This is meant for running on the JASMIN system and you need to be logged
 # onto the cylc.jasmin.ac.uk server.
 
-echo "Concepto-JULES Script One has begun"
+#Opening speel for the code to run
+echo "
+   _____                           _
+  / ____|                         | |
+ | |     ___  _ __   ___ ___ _ __ | |_ ___    ______
+ | |    / _ \| '_ \ / __/ _ \ '_ \| __/ _ \  |______|
+ | |___| (_) | | | | (_|  __/ |_) | || (_) |
+  \_____\___/|_| |_|\___\___| .__/ \__\___/
+                            | |
+                            |_|
+        _ _    _ _      ______  _____
+       | | |  | | |    |  ____|/ ____|
+       | | |  | | |    | |__  | (___
+   _   | | |  | | |    |  __|  \___ \
+  | |__| | |__| | |____| |____ ____) |
+   \____/ \____/|______|______|_____/
+
+Author: Marcus Buechel
+
+"
+echo "Concepto-JULES Script One has begun..."
 
 #Get the initial time for when this script began running
 time1=$(date)
@@ -55,4 +75,4 @@ time2=$(date)
 #Add the final time to the log file
 echo  "Script finished at: " $time2 >> ${base_save}Concepto-JULES/Logs/Log_One.txt
 
-echo "Concepto-JULES Script One has ended"
+echo "...Concepto-JULES Script One has ended"
