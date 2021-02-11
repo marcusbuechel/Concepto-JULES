@@ -81,7 +81,7 @@ cd /work/scratch-pw/$USER/Concepto-JULES
 echo "
 ################################################################################
 
-File Structure created;
+File Structure created:
 
 "
 tree -d
