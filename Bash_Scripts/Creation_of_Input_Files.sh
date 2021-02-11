@@ -92,8 +92,8 @@ echo "All meteorological variables have been sent to the SLURM scheduler"
 ################################################################################
 
 #Edit the JULES namelist with the needed times
-
-
+sed -E -e "s/1900/${year1}/g" /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/app/jules/rose-app.conf
+sed -E -e "s/1901/${year2}/g" /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/app/jules/rose-app.conf
 
 
 
