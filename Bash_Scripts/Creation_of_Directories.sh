@@ -27,11 +27,16 @@
 # NOTE: This is meant for running on the JASMIN system and you need to be logged
 # onto the cylc.jasmin.ac.uk server.
 
+echo "Concepto-JULES Script One has begun"
+
 #Get the initial time for when this script began running
-time1= date
+time1=$(date)
 
 #Set the base directory
 base_save=/work/scratch-pw/$USER/
+
+#Remove the existing directories if they exist
+rm -rf ${base_save}Concepto-JULES/
 
 #Make the directories
 mkdir -p ${base_save}Concepto-JULES/Input/Driving_Data
@@ -42,9 +47,12 @@ mkdir ${base_save}Concepto-JULES/Logs
 
 #Make the first log file for the work
 echo -e "The First Concepto-JULES bash script has begun running... \nfingers crossed it finishes!" >> ${base_save}Concepto-JULES/Logs/Log_One.txt
-echo  "Script started at " + time1 >> ${base_save}Concepto-JULES/Logs/Log_One.txt
+echo  "Script started at: " ${time1} >> ${base_save}Concepto-JULES/Logs/Log_One.txt
 
 #Show final time
-time2= date
+time2=$(date)
 
-echo  "Script finished at " + time2 >> ${base_save}Concepto-JULES/Logs/Log_One.txt
+#Add the final time to the log file
+echo  "Script finished at: " $time2 >> ${base_save}Concepto-JULES/Logs/Log_One.txt
+
+echo "Concepto-JULES Script One has ended"
