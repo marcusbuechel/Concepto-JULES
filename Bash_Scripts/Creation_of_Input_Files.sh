@@ -47,10 +47,12 @@ meteo_data=/group_workspaces/jasmin2/jules_bd/data/CHESS_v1.2/met_uncompressed/
 echo "Getting some files for setup now..."
 
 #Get the text catchment shapefile NEEDS ALTERATING TO WORK
-#wget -r -np -nd -P /work/scratch-pw/mehb/Concepto-JULES/Input/Driving_Data/ https://github.com/marcusbuechel/Concepto-JULES/blob/main/Test_Data/Tamar/47001.zip >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
+cd /work/scratch-pw/mehb/Concepto-JULES/Input/Driving_Data/
+wget -r -np -nd https://github.com/marcusbuechel/Concepto-JULES/blob/main/Test_Data/Tamar/47001.zip -O /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/temp.zip
 
 #Unzip the files
-unzip /work/scratch-pw/mehb/Concepto-JULES/Input/Driving_Data/47001.zip -d /work/scratch-pw/mehb/Concepto-JULES/Input/Driving_Data/ >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
+unzip /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
+rm -r /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
 
 #Input variables
 year1=2000 >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
@@ -84,3 +86,28 @@ done
 
 #Report back what is running for the user
 squeue --user=$USER --name=Concepto-JULES >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
+
+echo "All meteorological variables have been sent to the SLURM scheduler"
+
+################################################################################
+
+#Edit the JULES namelist with the needed times
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sbatch --dependency=singleton --job-name=Concepto-JULES RUN NEXT script for running JULES
