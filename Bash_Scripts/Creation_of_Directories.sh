@@ -67,7 +67,7 @@ mkdir ${base_save}Concepto-JULES/Logs
 
 #Make the first log file for the work
 echo -e "The First Concepto-JULES bash script has begun running... \nfingers crossed it finishes!" >> ${base_save}Concepto-JULES/Logs/Log_One.txt
-echo  "Script started at: " ${time1} >> ${base_save}Concepto-JULES/Logs/Log_One.txt
+echo  "Script started at: " $time1 >> ${base_save}Concepto-JULES/Logs/Log_One.txt
 
 #Show final time
 time2=$(date)
