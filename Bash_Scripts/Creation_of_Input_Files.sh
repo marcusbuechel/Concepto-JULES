@@ -34,8 +34,16 @@ possible!"
 #Get the initial time for when this script began running
 time1=$(date)
 
+
+
 #Set the base directory
 base_save=/work/scratch-pw/$USER/Concepto-JULES/
 
 #Set the meteorological data file
-meteo_data=/group_workspaces/jasmin2/jules_bd/data/CHESS_v1.2/met_uncompressed/ 
+meteo_data=/group_workspaces/jasmin2/jules_bd/data/CHESS_v1.2/met_uncompressed/
+
+#Get the text catchment shapefile
+wget -r -np -nd -P /work/scratch-pw/mehb/Concepto-JULES/Input/Driving_Data/ https://github.com/marcusbuechel/Concepto-JULES/blob/main/Test_Data/Tamar/47001.zip
+
+#Unzip the files
+unzip /work/scratch-pw/mehb/Concepto-JULES/Input/Driving_Data/47001.zip -d /work/scratch-pw/mehb/Concepto-JULES/Input/Driving_Data/
