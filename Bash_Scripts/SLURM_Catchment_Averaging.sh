@@ -48,4 +48,5 @@ done
 
 #https://code.mpimet.mpg.de/boards/1/topics/7767
 #Merge all the files into one
+#Idea to mask -> average -> merge together
 ncrcat ${files_to_combine} ${save_space}${variable_name}_complete.nc
