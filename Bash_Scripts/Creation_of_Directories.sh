@@ -60,7 +60,7 @@ rm -rf ${base_save}Concepto-JULES/
 
 #Make the directories
 mkdir -p ${base_save}Concepto-JULES/Input/Driving_Data
-mkdir ${base_save}Concepto-JULES/Input/JULES
+mkdir -p ${base_save}Concepto-JULES/Input/JULES/Namelist
 mkdir -p ${base_save}Concepto-JULES/Output/JULES_Data
 mkdir ${base_save}Concepto-JULES/Output/Refined_Data
 mkdir ${base_save}Concepto-JULES/Logs
