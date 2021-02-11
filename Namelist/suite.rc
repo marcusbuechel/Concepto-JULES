@@ -1,0 +1,97 @@
+#!jinja2
+[cylc]
+    UTC mode = True # Ignore DST
+[scheduling]
+    [[dependencies]]
+        graph = """
+                {% for x in PARAMETERS %}
+                    fcm_make => Concepto_JULES_{{x}}
+                {% endfor %}
+                """
+[runtime]
+    [[root]]
+        script = rose task-run --verbose
+        [[[event hooks]]]
+            retry handler = rose suite-hook --mail
+            submission retry handler = rose suite-hook --mail
+            submission timeout handler = rose suite-hook --mail
+            execution timeout handler = rose suite-hook --mail
+            failed handler = rose suite-hook --mail
+            submission failed handler = rose suite-hook --mail
+            ## If you want the suite to shutdown following a failure, you should replace the 2 lines above with:
+            # failed handler = rose suite-hook --mail --shutdown
+            # submission failed handler = rose suite-hook --mail --shutdown
+            # Adjust the values if your suite requires different timeout values.
+            submission timeout = P1D
+            execution timeout = PT3H
+    [[[environment]]]
+        NETCDF_FORTRAN_ROOT=/home/users/siwilson/netcdf.openmpi/
+        NETCDF_ROOT=/home/users/siwilson/netcdf.openmpi/
+
+    [[[remote]]]
+        host = {{ ROSE_ORIG_HOST }}
+
+    [[JASMIN]]
+      script = " rose task-run --quiet --path=share/fcm_make/build/bin "
+      env-script = """
+                    eval $(rose task-env)
+                    export PATH=/apps/jasmin/metomi/bin:$PATH
+                    module load intel/19.0.0
+#module load contrib/gnu/gcc/8.2.0
+                    module load contrib/gnu/gcc/7.3.0
+                    module load eb/OpenMPI/intel/3.1.1
+#module add parallel-netcdf/intel
+                    module list 2>&1
+                    env | grep LD_LIBRARY_PATH
+                    export NETCDF_FORTRAN_ROOT=/home/users/siwilson/netcdf_par/3.1.1/intel.19.0.0/
+                    export NETCDF_ROOT=/home/users/siwilson/netcdf_par/3.1.1/intel.19.0.0/
+                    export HDF5_LIBDIR=/home/users/siwilson/netcdf_par/3.1.1/intel.19.0.0/lib
+#module load intel/19.0.0
+                    export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
+                    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_LIBDIR
+                    env | grep LD_LIBRARY_PATH
+  """
+        [[[job]]]
+            submission polling intervals = PT10S, PT1M
+            execution polling intervals = PT10S, PT1M
+            batch system = slurm
+        [[[environment]]]
+            OUTPUT_DIR = {{ OUTPUT_DIR }}
+            RUNID = {{RUNID}}
+            OUT_LOC="$OUTPUT_DIR/${RUNID}"
+            JULES_SOURCE      = {{ JULES_SOURCE }}
+            JULES_SOURCE_META = {{ JULES_SOURCE }}/rose-meta/
+            JULES_PLATFORM    = jasmin-lotus-intel
+    [[fcm_make]]
+        inherit = None, JASMIN
+        command scripting = rose task-run
+        [[[job]]]
+            batch system = background
+            execution time limit = PT10M
+        [[[environment]]]
+            ROSE_TASK_N_JOBS = 16
+            JULES_BUILD = fast
+            JULES_OMP = noomp
+        [[[directives]]]
+            --ntasks = 1
+            --cpus-per-task=10
+            -p = par-multi
+
+{% for x in PARAMETERS %}
+[[Concepto_JULES_{{x}}]]
+    inherit = None, JASMIN
+    command scripting = "mkdir -p $OUT_LOC; rose task-run --path=share/fcm_make/build/bin --app-key=jules --opt-conf-key={{x}}"
+    [[[job]]]
+    batch system = slurm
+    execution retry delays = 8*PT20S
+    submission retry delays = 8*PT10M
+    [[[environment]]]
+        ROSE_LAUNCHER = mpirun
+        ROSE_TASK_APP = jules
+        OMP_NUM_THREADS = 1
+    [[[directives]]]
+        --partition = short-serial
+        --ntasks = 1
+        --cpus-per-task=1
+        --time = 00:30:00
+{% endfor %}

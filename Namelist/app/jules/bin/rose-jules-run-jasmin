@@ -1,0 +1,18 @@
+#!/bin/sh
+eval $(rose task-env)
+export PATH=/apps/jasmin/metomi/bin:$PATH
+module load intel/19.0.0
+#module load contrib/gnu/gcc/8.2.0
+module load contrib/gnu/gcc/7.3.0
+module load eb/OpenMPI/intel/3.1.1
+#module add parallel-netcdf/intel
+module list 2>&1
+env | grep LD_LIBRARY_PATH
+export NETCDF_FORTRAN_ROOT=/home/users/siwilson/netcdf_par/3.1.1/intel.19.0.0/
+export NETCDF_ROOT=/home/users/siwilson/netcdf_par/3.1.1/intel.19.0.0/
+export HDF5_LIBDIR=/home/users/siwilson/netcdf_par/3.1.1/intel.19.0.0/lib
+#module load intel/19.0.0
+export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HDF5_LIBDIR
+env | grep LD_LIBRARY_PATH
+exec $1
