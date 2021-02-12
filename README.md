@@ -1,17 +1,4 @@
-#   _____                           _
-#  / ____|                         | |
-# | |     ___  _ __   ___ ___ _ __ | |_ ___    ______
-# | |    / _ \| '_ \ / __/ _ \ '_ \| __/ _ \  |______|
-# | |___| (_) | | | | (_|  __/ |_) | || (_) |
-# \_____\___/|_| |_|\___\___| .__/ \__\___/
-#                            | |
-#                            |_|
-#        _ _    _ _      ______  _____
-#       | | |  | | |    |  ____|/ ____|
-#       | | |  | | |    | |__  | (___
-#   _   | | |  | | |    |  __|  \___ \
-#  | |__| | |__| | |____| |____ ____) |
-#   \____/ \____/|______|______|_____/
+![alt text](https://github.com/marcusbuechel/COncepto-JULES/tree/main/Readme_Files/logo.jpg?raw=true)
 
  Bash scripts and code to run catchments in the land surface model, JULES, as a single point.
 
