@@ -30,7 +30,7 @@ For our test catchment we explore the River Tamar (Station at Gunnislake: https:
 
 ## Presentation
 
-For a presentation explaining Concepto-JULES and the current progress please visit:
+For a presentation explaining Concepto-JULES and the current progress please visit: https://ox.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e77be54d-ce8c-44db-ac23-accd011f8a45
 
 ## Contributing
 
