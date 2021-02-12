@@ -75,6 +75,13 @@ done
 
 echo "Base variables have been input..."
 
+echo "Creating Catchment NETCDF MASK..."
+
+#Use GDAL to make a mask of the shapefile data
+#Notes: https://disc.gsfc.nasa.gov/information/howto?title=How%20to%20Display%20a%20Shapefile-based%20Data%20Subset%20with%20GrADS
+#Notes: https://gdal.org/programs/gdal_rasterize.html
+gdal_rasterize -burn 1  -of netCDF /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/47001.shp /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/catchment_mask.nc
+
 echo "Sending jobs off to the SLURM batch scheduler... " >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
 
 #NEEDS CHANGING FOR FINAL BUILD
@@ -94,20 +101,6 @@ echo "All meteorological variables have been sent to the SLURM scheduler"
 #Edit the JULES namelist with the needed times
 sed -E -e "s/1900/${year1}/g" /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/app/jules/rose-app.conf
 sed -E -e "s/1901/${year2}/g" /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/app/jules/rose-app.conf
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 sbatch --dependency=singleton --job-name=Concepto-JULES RUN NEXT script for running JULES
