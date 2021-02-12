@@ -48,7 +48,7 @@ echo "Getting some files for setup now..."
 
 #Get the text catchment shapefile NEEDS ALTERATING TO WORK
 cd /work/scratch-pw/mehb/Concepto-JULES/Input/Driving_Data/
-wget -r -np -nd https://www.dropbox.com/s/e8gvl5ktgurcx5h/47001.zip?dl=1 -O /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/temp.zip
+wget -r -np -nd https://www.dropbox.com/s/caft9dg74cn02kx/47001.zip?dl=1 -O /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/temp.zip
 
 #Unzip the files
 unzip /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
