@@ -1,4 +1,4 @@
-![alt text](https://github.com/marcusbuechel/Concepto-JULES/blob/main/Readme_Files/Process_Breakdown.jpg?raw=true)
+![alt text](https://github.com/marcusbuechel/Concepto-JULES/blob/main/Readme_Files/Logo.JPG?raw=true)
 
 # Concepto-JULES
 
@@ -18,13 +18,13 @@ You need a JASMIN (http://jasmin.ac.uk/) user account to run Concepto-JULES.
 
 As the study of hydrology continues we have an ever-growing plethora of numerical models. We have top-down, conceptual models that use our current perceptions of how a river catchment works as a single, lumped hydrological response unit. Simple to run, but often lumping many processes together and thus potentially leading to us losing the fidelity behind the hydrological processes driving catchment response to climatic and land forcing. For example, lumping vegetation and soil as a single water store. On the other hand we have physics-based, bottom-up, distributed models that are often more computationally demanding but use are understanding of physical processes to be more fidelious to the processes occurring and explicit to the physical stores. For more information have a look at: https://uofs-comphyd.github.io/blog/journey-model-continuum
 
-![alt text](https://github.com/marcusbuechel/Concepto-JULES/blob/main/Readme_Files/Logo.JPG?raw=true)
+![alt text](https://github.com/marcusbuechel/Concepto-JULES/blob/main/Readme_Files/Process_Breakdown.jpg?raw=true)
 
 With Concepto-JULES we aim to cross the divide to run small river catchments in JULES as a single point. This will help us to understand the dominant hydrological physics-based processes occurring in the catchment and to potentially improve our parameterizations and parameters within JULES.
 
 For our test catchment we explore the River Tamar (Station at Gunnislake: https://nrfa.ceh.ac.uk/data/station/liveData/47001) in the southwest of the UK.
 
-![alt text](https://github.com/marcusbuechel/Concepto-JULES/blob/main/Readme_Files/catchment.jpg?raw=true)
+![alt text](https://github.com/marcusbuechel/Concepto-JULES/blob/main/Readme_Files/Catchment.jpg?raw=true)
 
 ## Presentation
 
