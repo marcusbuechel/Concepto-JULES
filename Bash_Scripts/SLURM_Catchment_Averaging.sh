@@ -46,7 +46,9 @@ do
   files_to_combine+="${variable_name}${year}* "
 done
 
-#https://code.mpimet.mpg.de/boards/1/topics/7767
-#Merge all the files into one
-#Idea to mask -> average -> merge together
+#Notes: https://code.mpimet.mpg.de/boards/1/topics/7767
+#Merge all the files together by one file
 ncrcat ${files_to_combine} ${save_space}${variable_name}_complete.nc
+
+#Divide by mask and then find the zonal average for the catchment area
+cdo -div -fldmean ${save_space}${variable_name}_complete.nc /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/catchment_mask.nc /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/${variable_name}_complete.nc.nc
