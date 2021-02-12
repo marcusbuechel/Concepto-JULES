@@ -87,7 +87,7 @@ echo "Sending jobs off to the SLURM batch scheduler... " >> ${base_save}Concepto
 #NEEDS CHANGING FOR FINAL BUILD
 for $var in ${meteo[@]}
 do
-  sbatch --export=variable=$var,dates=$years,cathment_id=$catchment --job-name=Concepto-JULES /home/users/mehb/Concepto-JULES/SLURM_Catchment_Averaging.sh
+  sbatch --export=variable=$var,dates=$years,cathment_id=$catchment --job-name=Concepto-JULES /home/users/mehb/Concepto-JULES/SLURM_Meteorological_Averaging.sh
   echo $var " sent to the SLURM Scheduler" >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
 done
 
@@ -102,5 +102,5 @@ echo "All meteorological variables have been sent to the SLURM scheduler"
 sed -E -e "s/1900/${year1}/g" /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/app/jules/rose-app.conf
 sed -E -e "s/1901/${year2}/g" /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/app/jules/rose-app.conf
 
-
-sbatch --dependency=singleton --job-name=Concepto-JULES RUN NEXT script for running JULES
+#Average Land Surface Once the meteorological averaging is done
+sbatch --array=1-7 --dependency=singleton --job-name=Concepto-JULES /home/users/mehb/Concepto-JULES/SLURM_Land_Surface_Averaging.sh
