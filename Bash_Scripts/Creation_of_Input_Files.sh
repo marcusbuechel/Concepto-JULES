@@ -80,7 +80,7 @@ echo "Sending jobs off to the SLURM batch scheduler... " >> ${base_save}Concepto
 #NEEDS CHANGING FOR FINAL BUILD
 for $var in ${meteo[@]}
 do
-  sbatch --export=variable=$var,dates=$years --job-name=Concepto-JULES /home/users/mehb/Concepto-JULES/SLURM_Catchment_Averaging.sh
+  sbatch --export=variable=$var,dates=$years,cathment_id=$catchment --job-name=Concepto-JULES /home/users/mehb/Concepto-JULES/SLURM_Catchment_Averaging.sh
   echo $var " sent to the SLURM Scheduler" >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
 done
 
