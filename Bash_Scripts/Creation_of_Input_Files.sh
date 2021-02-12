@@ -48,7 +48,7 @@ echo "Getting some files for setup now..."
 
 #Get the text catchment shapefile NEEDS ALTERATING TO WORK
 cd /work/scratch-pw/mehb/Concepto-JULES/Input/Driving_Data/
-wget -r -np -nd https://github.com/marcusbuechel/Concepto-JULES/blob/main/Test_Data/Tamar/47001.zip -O /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/temp.zip
+wget -r -np -nd https://www.dropbox.com/s/e8gvl5ktgurcx5h/47001.zip?dl=1 -O /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/temp.zip
 
 #Unzip the files
 unzip /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/temp.zip >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
@@ -102,5 +102,17 @@ echo "All meteorological variables have been sent to the SLURM scheduler"
 sed -E -e "s/1900/${year1}/g" /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/app/jules/rose-app.conf
 sed -E -e "s/1901/${year2}/g" /work/scratch-pw/$USER/Concepto-JULES/Input/JULES/Namelist/app/jules/rose-app.conf
 
+echo "Namelist has been altered accordingly" >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
+
 #Average Land Surface Once the meteorological averaging is done
 sbatch --array=1-7 --dependency=singleton --job-name=Concepto-JULES /home/users/mehb/Concepto-JULES/SLURM_Land_Surface_Averaging.sh
+
+echo "All land surface variables have been sent to the SLURM scheduler"
+
+#Time of script ending
+time2=$(date)
+
+#Save the ending time in the log
+echo  "Script finished at: " $time2 >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
+
+echo "...Concepto-JULES Script Two has ended"
