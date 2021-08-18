@@ -44,7 +44,7 @@ require(rgeos)
 
 variable <- "precip"
 file_location <- "C:/Users/marcu/Documents/PhD/Paper_1/ArcGIS_Work/DPhil/Changing_Landcover/Data/Base/Climate/CHESS_Driving_Data/"
-file_name <- paste0("chess-met_",variable,"_gb_1km_daily_19711101-19711131.nc")
+file_name <- paste0("chess-met_",variable,"_gb_1km_daily_19711001-19711031.nc")
 file <- paste0(file_location, file_name)
 
 #Open the file
@@ -94,7 +94,7 @@ ext <- extract(brick, shapefile, weights = TRUE, fun = mean)
 head(ext)
 data <- as.data.frame(t(ext))
 data <- cbind(as.data.frame(dates), data)
-data[,2] <- data[,2]*86400
+data[,2] <- data[,1]*86400
 plot(data)
 
 
@@ -102,16 +102,21 @@ plot(data)
 
 land_cover <- brick("C:/Users/marcu/Documents/PhD/Paper_1/ArcGIS_Work/DPhil/Changing_Landcover/Data/Base/JULES/Ancillary/chess_landcover_2000.nc")
 land_cover_avg <- extract(land_cover, shapefile, fun = mean)
+#frac, lat, lon, x, y, z
 
 river <- brick("C:/Users/marcu/Documents/PhD/Paper_1/ArcGIS_Work/DPhil/Changing_Landcover/Data/Base/JULES/Ancillary/chess_riverparams.nc")
 river_avg <- extract(river, shapefile, fun = mean)
+#acc, dir, landwater, lat, lon, x, y
 
 #May need to bring in for different variables
 land_frac <- brick("C:/Users/marcu/Documents/PhD/Paper_1/ArcGIS_Work/DPhil/Changing_Landcover/Data/Base/JULES/Ancillary/chess_landfrac.nc", varnames = c("lat","lon"))
 frac_avg <- extract(land_frac, shapefile, fun = mean)
+#landfrac, lat, lon, x, y
 
 pdm <- brick("C:/Users/marcu/Documents/PhD/Paper_1/ArcGIS_Work/DPhil/Changing_Landcover/Data/Base/JULES/Ancillary/uk_ihdtm_topography+topoindex_1km.nc")
 pdm_avg <- extract(pdm, shapefile, fun = mean)
+#area, aspect, eastings, elev, fdepth, northings, slope, stdev, stdtopi, topi
 
 soil <- brick("C:/Users/marcu/Documents/PhD/Paper_1/ArcGIS_Work/DPhil/Changing_Landcover/Data/Base/JULES/Ancillary/chess_soilparams_hwsd_vg.nc", nl = 9)
 soil_avg <- extract(soil, nl = 9, shapefile, fun = mean)
+#cs, lat, lon, scpool, x, y
