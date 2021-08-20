@@ -42,7 +42,7 @@ echo  "Script started at: " ${time1} >> ${base_save}Concepto-JULES/Logs/Log_Two.
 base_save=/work/scratch-pw/$USER/Concepto-JULES/
 
 #Set the meteorological data file
-meteo_data=/group_workspaces/jasmin2/jules_bd/data/CHESS_v1.2/met_uncompressed/
+meteo_data=/gws/nopw/j04/hydro_jules/data/uk/driving_data/chess/chess-met/daily
 
 echo "Getting some files for setup now..."
 
