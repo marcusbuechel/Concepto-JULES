@@ -75,19 +75,26 @@ done
 
 echo "Base variables have been input..."
 
-echo "Creating Catchment NETCDF MASK..."
-
 #Use GDAL to make a mask of the shapefile data
-#Notes: https://disc.gsfc.nasa.gov/information/howto?title=How%20to%20Display%20a%20Shapefile-based%20Data%20Subset%20with%20GrADS
-#Notes: https://gdal.org/programs/gdal_rasterize.html
-gdal_rasterize -burn 1  -of netCDF /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/47001.shp /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/catchment_mask.nc
+#####CURRENTLY EDITING FOR NEW PROCESS####
+
+#Run the python code to reproject
+echo "JASPY environment loading in..."
+module load jaspy
+
+echo "Converting shapefile projection..."
+python /location/to/python/file/Reproject_Shapefile_CJ.py /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/
+
+#Use of the gdal
+echo "Creating Catchment NETCDF MASK..."
+gdal_rasterize -of netCDF -burn 1 -tr 0.0002 0.0002 /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/Basin.shp /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/Basin.nc
 
 echo "Sending jobs off to the SLURM batch scheduler... " >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
 
 #NEEDS CHANGING FOR FINAL BUILD
 for $var in ${meteo[@]}
 do
-  sbatch --export=variable=$var,dates=$years,cathment_id=$catchment --job-name=Concepto-JULES /home/users/mehb/Concepto-JULES/SLURM_Meteorological_Averaging.sh
+  sbatch --export=variable=$var,dates=$years,catchment_id=$catchment --job-name=Concepto-JULES /home/users/mehb/Concepto-JULES/SLURM_Meteorological_Averaging.sh
   echo $var " sent to the SLURM Scheduler" >> ${base_save}Concepto-JULES/Logs/Log_Two.txt
 done
 
