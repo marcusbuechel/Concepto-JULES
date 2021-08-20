@@ -17,6 +17,9 @@ import iris.plot as iplt
 import iris.quickplot as qplt
 import iris.pandas
 import os
+import rioxarray
+import xarray as xr
+from shapely.geometry import mapping
 
 #shapefile load in
 shapefile_location = "C:/Users/marcu/Documents/PhD/Paper_1/ArcGIS_Work/DPhil/Changing_Landcover/Data/Base/Outlines/Rivers/Catchments/Tamar/47001-Tamar/"
@@ -132,3 +135,12 @@ mask = []
     masked_data = np.ma.masked_array(data, cube_mask)
     cube.data = masked_data
 
+
+##### Trying a new approach
+
+
+data = xarray.open_dataset(file)
+geom = geometry.Geometry(
+    gdf.geometry.values[0].__geo_interface__, geometry.CRS(
+                'epsg:27700'))
+shapefile.plot()

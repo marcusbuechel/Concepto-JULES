@@ -1,0 +1,1 @@
+gdal_rasterize -of netCDF -burn 1 -tr 50 50 Basin.shp Basin.nc
