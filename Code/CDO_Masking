@@ -1,16 +1,21 @@
 #https://stackoverflow.com/questions/62447303/how-to-mask-basin-using-ferret-or-cdo
 #https://gis.stackexchange.com/questions/265589/change-shapefile-coordinate-system-using-python
-#Need to install new parts
-#Mask of shapefile
+#Need to use code to convert shapefile
+#Mask of shapefile for OSGB
 gdal_rasterize -of netCDF -burn 1 -tr 50 50 Basin.shp Basin.nc
 
-gdal_rasterize -of netCDF -burn 1 -tr 50 50 Basin.shp Basin.nc
+
+#For curvilinear
+gdal_rasterize -of netCDF -burn 1 -tr 0.0002 0.0002 reproj_47001.shp Basin.nc
 
 #Remap
 #Location: /gws/nopw/j04/hydro_jules/data/uk/driving_data/chess/chess-met/daily
 #File test: chess-met_precip_gb_1km_daily_19610101-19610131.nc
 cdo remapbil,/gws/nopw/j04/hydro_jules/data/uk/driving_data/chess/chess-met/daily/chess-met_precip_gb_1km_daily_19610101-19610131.nc Basin.nc Basin2.nc
-ncremap -d /gws/nopw/j04/hydro_jules/data/uk/driving_data/chess/chess-met/daily/chess-met_precip_gb_1km_daily_19610101-19610131.nc Basin.nc Basin2.nc
 
-cdo setgridtype,curvilinear Basin.nc out.nc
-cdo -genbil,r360x180 -setgridtype,curvilinear Basin.nc Basin2.nc
+
+#mask
+cdo ifthen Basin2.nc /gws/nopw/j04/hydro_jules/data/uk/driving_data/chess/chess-met/daily/chess-met_precip_gb_1km_daily_19610101-19610131.nc masked_infile.nc
+
+#Mean
+cdo -fldmean masked_infile.nc mean_infile.nc
