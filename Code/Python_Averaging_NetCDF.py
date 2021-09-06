@@ -139,8 +139,9 @@ mask = []
 ##### Trying a new approach
 
 
-data = xarray.open_dataset(file)
+data = xr.open_dataset(file)
 geom = geometry.Geometry(
     gdf.geometry.values[0].__geo_interface__, geometry.CRS(
                 'epsg:27700'))
 shapefile.plot()
+data.mean(dim="y").plot()
