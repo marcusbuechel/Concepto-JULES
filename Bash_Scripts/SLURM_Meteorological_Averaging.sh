@@ -51,4 +51,4 @@ done
 ncrcat ${files_to_combine} ${save_space}${variable_name}_complete.nc
 
 #Divide by mask and then find the zonal average for the catchment area
-cdo -div -fldmean ${save_space}${variable_name}_complete.nc /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/catchment_mask.nc /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/${variable_name}_complete.nc.nc
+cdo -div -fldmean ${save_space}${variable_name}_complete.nc /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/catchment_mask.nc /work/scratch-pw/$USER/Concepto-JULES/Input/Driving_Data/${variable_name}_complete.nc
